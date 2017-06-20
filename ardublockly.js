@@ -16,7 +16,7 @@ Ardublockly.init = function() {
 
   // Inject Blockly into content_blocks and fetch additional blocks
   Ardublockly.injectBlockly(document.getElementById('content_blocks'),
-                            Ardublockly.TOOLBOX_XML, '../blockly/');
+                            Ardublockly.TOOLBOX_XML, './blockly/');
   Ardublockly.importExtraBlocks();
 
   Ardublockly.designJsInit();
