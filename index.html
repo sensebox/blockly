@@ -80,9 +80,22 @@
         <li><a href="#" id="button_load"><span class="translatable_open">Öffnen</span><i class="mdi-file-file-upload left"></i></a></li>
         <li><a href="#" id="button_save"><span class="translatable_save">Speichern</span><i class="mdi-file-file-download left"></i></a></li>
         <li><a href="#" id="button_delete"><span class="translatable_deleteAll">Alles Löschen</span><i class="mdi-action-delete left"></i></a></li>
+        <li><a href="#" id="button_savexml"><span class="translatable_deleteAll">Blöcke speichern</span><i class="mdi-action-saveblocks left"></i></a></li>
+        <button class="btn" data-clipboard-action="copy" data-clipboard-target="#content_arduino">Copy</button>
       </ul>
     </div>
   </nav>
+<!-- copy to clipboard stuff -->
+  <script src="./js_libs/clipboard.min.js"></script>
+  <script>
+ var clipboard = new Clipboard('.btn');
+ clipboard.on('success', function(e) {
+     console.log(e);
+ });
+ clipboard.on('error', function(e) {
+     console.log(e);
+ });
+ </script>
 
   <!-- Sidebar navigation -->
   <ul id="slide-out" class="side-nav">
@@ -93,8 +106,8 @@
         <li id="menu_save"><a href="#"><span class="translatable_save">Speichern</span><i class="mdi-file-file-download left"></i></a></li>
         <li id="menu_delete"><a href="#"><span class="translatable_deleteAll">Alles Löschen</span><i class="mdi-action-delete left"></i></a></li>
         <li id="menu_settings"><a href="#"><span class="translatable_settings">Einstellungen</span><i class="mdi-action-settings left"></i></a></li>
-        <li id="menu_bug"><a href="https://github.com/carlosperate/ardublockly/wiki" target="_blank"><span class="translatable_documentation">Dokumentation</span><i class="mdi-action-help left"></i></a></li>
-        <li id="menu_bug"><a href="http://github.com/carlosperate/ardublockly/issues" target="_blank"><span class="translatable_reportBug">Fehler melden</span><i class="mdi-action-bug-report left"></i></a></li>
+        <li id="menu_bug"><a href="https://sensebox.de/blog/2017-06-27-ardublocklysenseBox" target="_blank"><span class="translatable_documentation">Dokumentation</span><i class="mdi-action-help left"></i></a></li>
+        <li id="menu_bug"><a href="http://github.com/sensebox/ardublockly/issues" target="_blank"><span class="translatable_reportBug">Fehler melden</span><i class="mdi-action-bug-report left"></i></a></li>
       </ul>
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
