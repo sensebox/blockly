@@ -312,9 +312,22 @@ ul.side-nav li.side-menu-end {
   right: 25px;
   top: -20px;
   height: 55px;
-  width: 160px;
+  /*width: 160px;*/
   z-index: 12;
 }
+
+#button_copy_clipboard {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 55px;
+  height: 55px;
+}
+#button_copy_clipboard i {
+  font-size: 2.4rem !important;
+  line-height: 55px;
+}
+
 #button_ide_large {
   position: absolute;
   right: 0px;

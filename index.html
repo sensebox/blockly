@@ -80,6 +80,7 @@
         <li><a href="#" id="button_load"><span class="translatable_open">Öffnen</span><i class="mdi-file-file-upload left"></i></a></li>
         <li><a href="#" id="button_save"><span class="translatable_save">Speichern</span><i class="mdi-file-file-download left"></i></a></li>
         <li><a href="#" id="button_delete"><span class="translatable_deleteAll">Alles Löschen</span><i class="mdi-action-delete left"></i></a></li>
+        <li><a href="#" id="button_savexml"><span class="translatable_save">Blöcke speichern</span><i class="mdi-action-assignment-returned left"></i></a></li>
       </ul>
     </div>
   </nav>
@@ -93,8 +94,8 @@
         <li id="menu_save"><a href="#"><span class="translatable_save">Speichern</span><i class="mdi-file-file-download left"></i></a></li>
         <li id="menu_delete"><a href="#"><span class="translatable_deleteAll">Alles Löschen</span><i class="mdi-action-delete left"></i></a></li>
         <li id="menu_settings"><a href="#"><span class="translatable_settings">Einstellungen</span><i class="mdi-action-settings left"></i></a></li>
-        <li id="menu_bug"><a href="https://github.com/carlosperate/ardublockly/wiki" target="_blank"><span class="translatable_documentation">Dokumentation</span><i class="mdi-action-help left"></i></a></li>
-        <li id="menu_bug"><a href="http://github.com/carlosperate/ardublockly/issues" target="_blank"><span class="translatable_reportBug">Fehler melden</span><i class="mdi-action-bug-report left"></i></a></li>
+        <li id="menu_bug"><a href="https://sensebox.de/blog/2017-06-27-ardublocklysenseBox" target="_blank"><span class="translatable_documentation">Dokumentation</span><i class="mdi-action-help left"></i></a></li>
+        <li id="menu_bug"><a href="http://github.com/sensebox/ardublockly/issues" target="_blank"><span class="translatable_reportBug">Fehler melden</span><i class="mdi-action-bug-report left"></i></a></li>
       </ul>
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
@@ -123,10 +124,15 @@
         <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off" style="display: none"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
         <!-- Arduino IDE action buttons -->
         <div id="ide_buttons_wrapper">
-          <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
-          <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
-          <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
-          <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
+          <div style="display: none;">
+            <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
+            <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
+            <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
+          </div>
+
+          <a id="button_copy_clipboard" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_blue" data-clipboard-action="copy" data-clipboard-target="#content_arduino" data-position="left" data-delay="750" data-tooltip="In Zwischenablage kopieren"><i id="button_copy_clipboard_icon" class="mdi-action-assignment"></i></a>
+
+          <!-- <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
             <div class="spinner-layer spinner-orange">
               <div class="circle-clipper left">
                 <div class="circle"></div>
@@ -163,7 +169,7 @@
                 <div class="circle"></div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- Blockly Panel -->
         <div class="card-panel white" style="padding: 0">
@@ -199,7 +205,7 @@
   </div>
 
   <!-- IDE Output content -->
-  <div class="ide_output_wrapper">
+  <div class="ide_output_wrapper" style="display: none">
     <ul class="collapsible ide_output_collapsible" data-collapsible="expandable">
       <li>
         <div id="ide_output_collapsible_header" class="collapsible-header ide_output_header_normal">
@@ -309,6 +315,18 @@
     </div>
   </div>
 
+  <!-- copy to clipboard stuff -->
+  <script src="./js_libs/clipboard.min.js"></script>
+  <script>
+  var clipboard = new Clipboard('.copy-btn');
+  clipboard.on('success', function(e) {
+    console.log(e);
+    Ardublockly.MaterialToast('Code wurde kopiert');
+  });
+  clipboard.on('error', function(e) {
+    console.log(e);
+  });
+  </script>
   <!-- Desktop version of Ardublockly JS, needs to be loaded first. -->
   <script src="ardublockly_desktop.js"></script>
   <!-- jQuery and Materialize JS -->
