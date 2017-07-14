@@ -20,7 +20,7 @@ goog.require('Blockly.Types');
 
 
 /** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.stepper.HUE = 80;
+Blockly.Blocks.stepper.HUE = 60;
 
 Blockly.Blocks['stepper_config'] = {
   /**
