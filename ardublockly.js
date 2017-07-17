@@ -122,13 +122,16 @@ Ardublockly.bindActionFunctions = function() {
       };
     }
   };
+  /*
   settingsPathInputListeners('settings_compiler_location',
                              ArdublocklyServer.setCompilerLocation,
                              Ardublockly.setCompilerLocationHtml);
   settingsPathInputListeners('settings_sketch_location',
                              ArdublocklyServer.setSketchLocationHtml,
                              Ardublockly.setSketchLocationHtml);
+                             */
 };
+
 
 /** Sets the Ardublockly server IDE setting to upload and sends the code. */
 Ardublockly.ideSendUpload = function() {
@@ -410,6 +413,7 @@ Ardublockly.setSketchLocationHtml = function(newEl) {
  * @param {element} jsonObj JSON data coming back from the server.
  * @return {undefined} Might exit early if response is null.
  */
+ /*
 Ardublockly.setArduinoBoardsHtml = function(newEl) {
   if (newEl === null) return Ardublockly.openNotConnectedModal();
 
@@ -425,7 +429,7 @@ Ardublockly.setArduinoBoardsHtml = function(newEl) {
     $('select').material_select();
   }
 };
-
+*/
 /**
  * Sets the Arduino Board type with the selected user input from the drop down.
  */
@@ -446,6 +450,7 @@ Ardublockly.setBoard = function() {
  * @param {element} jsonResponse JSON data coming back from the server.
  * @return {undefined} Might exit early if response is null.
  */
+ /*
 Ardublockly.setSerialPortsHtml = function(newEl) {
   if (newEl === null) return Ardublockly.openNotConnectedModal();
 
@@ -461,7 +466,7 @@ Ardublockly.setSerialPortsHtml = function(newEl) {
     $('select').material_select();
   }
 };
-
+*/
 /** Sets the Serial Port with the selected user input from the drop down. */
 Ardublockly.setSerial = function() {
   var el = document.getElementById('serial_port');
@@ -478,6 +483,7 @@ Ardublockly.setSerial = function() {
  * @param {element} jsonResponse JSON data coming back from the server.
  * @return {undefined} Might exit early if response is null.
  */
+ /*
 Ardublockly.setIdeHtml = function(newEl) {
   if (newEl === null) return Ardublockly.openNotConnectedModal();
 
@@ -493,7 +499,7 @@ Ardublockly.setIdeHtml = function(newEl) {
     $('select').material_select();
   }
 };
-
+*/
 /**
  * Sets the IDE settings data with the selected user input from the drop down.
  * @param {Event} e Event that triggered this function call. Required for link
