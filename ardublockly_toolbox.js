@@ -23,8 +23,9 @@ Ardublockly.TOOLBOX_XML =
 '      <block type="sensebox_foto"></block>' +
 '      <block type="sensebox_button"></block>' +
 '      <block type="sensebox_poti"></block>' +
+'      <block type="sensebox_time"></block>' +
 '    </category>' +
-'    <category id="senseBox_basics" name="senseBox Grundlagen" colour="120">' +
+'   <category id="senseBox_output" name="senseBox Ausgabe" colour="120">' +
 '      <block type="sensebox_led"></block>' +
 '      <block type="sensebox_piezo_buzzer"></block>' +
 '      <block type="sensebox_rgb_led">' +
@@ -44,9 +45,6 @@ Ardublockly.TOOLBOX_XML =
 '          </block>' +
 '        </value>' +
 '      </block>' +
-'    </category>' +
-'   <category id="senseBox_output" name="senseBox Ausgabe" colour="120">' +
-'      <block type="sensebox_time"></block>' +
 '      <block type="sensebox_safe_to_sd"></block>' +
 '      <block type="sensebox_serial_print"></block>' +
 '      <block type="sensebox_shield_wifi"></block>' +

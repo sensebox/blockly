@@ -48,9 +48,15 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_save', function() {
+    Ardublockly.saveXmlFile();
+    $('.button-collapse').sideNav('hide');
+  });
+
+  Ardublockly.bindClick_('menu_safecode', function() {
     Ardublockly.saveSketchFile();
     $('.button-collapse').sideNav('hide');
   });
+
   Ardublockly.bindClick_('menu_delete', function() {
     Ardublockly.discardAllBlocks();
     $('.button-collapse').sideNav('hide');
