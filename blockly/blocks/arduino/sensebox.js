@@ -1,9 +1,9 @@
 /*
 @metadata
     author": berndvanrennings
-    lastupdated": 2017-06-1 
+    lastupdated": 2017-06-1
     for more information: www.sensebox.de
-*/  
+*/
 
 'use strict';
 
