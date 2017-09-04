@@ -102,4 +102,7 @@ Ardublockly.LOCALISED_TEXT = {
   catAudio: "Audio",
   catMotors: "Motors",
   catComms: "Comms",
+  senseBox_output: "senseBox output",
+  senseBox_basics: "senseBox basics",
+  senseBox_Sensor: "senseBox sensors",
 };
