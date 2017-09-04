@@ -78,7 +78,7 @@
       <!-- Horizontal Navbar links only shown on large resolutions -->
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="#" id="button_load"><span class="translatable_open">Blöcke öffnen</span><i class="mdi-file-file-upload left"></i></a></li>
-        <li><a href="#" id="button_savexml"><span class="translatable_save">Blöcke speichern</span><i class="mdi-file-file-download left"></i></a></li>        
+        <li><a href="#" id="button_savexml"><span class="translatable_save">Blöcke speichern</span><i class="mdi-file-file-download left"></i></a></li>
         <li><a href="#" id="button_save"><span class="translatable_save">Code speichern</span><i class="mdi-action-assignment-returned left"></i></a></li>
         <li><a href="#" id="button_delete"><span class="translatable_deleteAll">Alles Löschen</span><i class="mdi-action-delete left"></i></a></li>
       </ul>
@@ -93,7 +93,7 @@
         <li id="menu_load"><a href="#"><span class="translatable_open">Öffnen</span><i class="mdi-file-file-upload left"></i></a></li>
         <li id="menu_save"><a href="#"><span class="translatable_save">Blöcke speichern</span><i class="mdi-file-file-download left"></i></a></li>
         <li id="menu_safecode"><a href="#"><span class="translatable_safecode">Code speichern</span><i class="mdi-file-file-download left"></i></a></li>
-        <li id="menu_delete"><a href="#"><span class="translatable_deleteAll">Blöcke löschen</span><i class="mdi-action-delete left"></i></a></li>        
+        <li id="menu_delete"><a href="#"><span class="translatable_deleteAll">Blöcke löschen</span><i class="mdi-action-delete left"></i></a></li>
         <li id="menu_settings"><a href="#"><span class="translatable_settings">Einstellungen</span><i class="mdi-action-settings left"></i></a></li>
         <li id="menu_bug"><a href="https://sensebox.de/blog/2017-06-27-ardublocklysenseBox" target="_blank"><span class="translatable_documentation">Dokumentation</span><i class="mdi-action-help left"></i></a></li>
         <li id="menu_bug"><a href="http://github.com/sensebox/ardublockly/issues" target="_blank"><span class="translatable_reportBug">Fehler melden</span><i class="mdi-action-bug-report left"></i></a></li>
@@ -228,11 +228,11 @@
       <!-- <div class="modal_section">
         <label><span class="translatable_compilerLocation">Compiler Location</span>:</label>
         <input type="text" id="settings_compiler_location">
-      </div> 
+      </div>
       <div class="modal_section">
         <label><span class="translatable_sketchFolder">Sketch Folder</span>:</label>
         <input type="text" id="settings_sketch_location">
-      </div> 
+      </div>
      <div class="modal_section">
         <label><span class="translatable_arduinoBoard">Arduino Board</span>:</label>
         <select name="settings_board" id="board">
@@ -244,13 +244,13 @@
         <select name="settings_serial" id="serial_port">
           <option value="COMX" class="translatable_comPortDefault">COM Port unknown</option>
         </select>
-      </div> 
+      </div>
       <div class="modal_section">
         <label><span class="translatable_defaultIdeButton">Default IDE button</span>:</label>
         <select name="settings_ide" id="ide_settings">
           <option value="verify" class="translatable_defaultIdeButtonDefault">IDE options unknown</option>
         </select>
-      </div> -->    
+      </div> -->
       <div class="modal_section">
         <label><span class="translatable_language">Language</span>:</label>
         <select name="settings_language" id="language"></select>
@@ -316,18 +316,6 @@
     </div>
   </div>
 
-  <!-- copy to clipboard stuff -->
-  <script src="./js_libs/clipboard.min.js"></script>
-  <script>
-  var clipboard = new Clipboard('.copy-btn');
-  clipboard.on('success', function(e) {
-    console.log(e);
-    Ardublockly.MaterialToast('Code wurde kopiert');
-  });
-  clipboard.on('error', function(e) {
-    console.log(e);
-  });
-  </script>
   <!-- Desktop version of Ardublockly JS, needs to be loaded first. -->
   <script src="ardublockly_desktop.js"></script>
   <!-- jQuery and Materialize JS -->
@@ -346,10 +334,24 @@
   <script src="ardublockly_toolbox.js"></script>
   <script src="ardublockly_blockly.js"></script>
   <script src="ardublockly.js"></script>
+  <!-- copy to clipboard stuff -->
+  <script src="./js_libs/clipboard.min.js"></script>
+  <script>
+  var clipboard = new Clipboard('.copy-btn');
+  clipboard.on('success', function(e) {
+    console.log(e);
+    Ardublockly.MaterialToast(Ardublockly.getLocalStr('code_copied'));
+  });
+  clipboard.on('error', function(e) {
+    console.log(e);
+  });
+
+  </script>
   <script>
     window.addEventListener('load', function load(event) {
       window.removeEventListener('load', load, false);
       Ardublockly.init();
+      document.getElementById("button_copy_clipboard").setAttribute("data-tooltip", Ardublockly.getLocalStr('save_to_clipboard'));
     });
   </script>
 </body>

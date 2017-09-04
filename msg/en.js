@@ -105,4 +105,6 @@ Ardublockly.LOCALISED_TEXT = {
   senseBox_output: "senseBox output",
   senseBox_basics: "senseBox basics",
   senseBox_Sensor: "senseBox sensors",
+  code_copied: "Code got copied",
+  save_to_clipboard: "Save to clipboard"
 };
