@@ -316,16 +316,28 @@ ul.side-nav li.side-menu-end {
   z-index: 12;
 }
 
-#button_copy_clipboard {
+#button_compile_sketch {
   position: absolute;
   right: 0px;
   top: 0px;
   width: 55px;
   height: 55px;
 }
-#button_copy_clipboard i {
+#button_compile_sketch i {
   font-size: 2.4rem !important;
   line-height: 55px;
+}
+
+#button_copy_clipboard {
+  position: absolute;
+  right: 72px;
+  top: 10px;
+  visibility: visible;
+  opacity: 1;
+  -moz-transition: visibility 0.3s linear, opacity 0.3s linear;
+  -webkit-transition: visibility 0.3s linear, opacity 0.3s linear;
+  -o-transition: visibility 0.3s linear, opacity 0.3s linear;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
 }
 
 #button_ide_large {

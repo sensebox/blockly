@@ -126,13 +126,14 @@
         <!-- Arduino IDE action buttons -->
         <div id="ide_buttons_wrapper">
           <div style="display: none;">
-            <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
+            <a id="button_ide_left" style="display: none;" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
             <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
             <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
           </div>
 
           <a id="button_copy_clipboard" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_blue" data-clipboard-action="copy" data-clipboard-target="#content_arduino" data-position="left" data-delay="750" data-tooltip="In Zwischenablage kopieren"><i id="button_copy_clipboard_icon" class="mdi-action-assignment"></i></a>
-
+          <a id="button_compile_sketch" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" data-position="left" data-delay="750" data-tooltip="Sketch kompilieren"><i id="button_compile_sketch_icon" class="mdi-action-assignment-turned-in"></i></a>
+          
           <!-- <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
             <div class="spinner-layer spinner-orange">
               <div class="circle-clipper left">
@@ -239,7 +240,7 @@
           <option value="uno" class="translatable_arduinoBoardDefault">Arduino Board unknown</option>
         </select>
       </div>
-      <<div class="modal_section">
+      <div class="modal_section">
         <label><span class="translatable_comPort">COM Port<span>:</label>
         <select name="settings_serial" id="serial_port">
           <option value="COMX" class="translatable_comPortDefault">COM Port unknown</option>
@@ -339,11 +340,10 @@
   <script>
   var clipboard = new Clipboard('.copy-btn');
   clipboard.on('success', function(e) {
-    console.log(e);
     Ardublockly.MaterialToast(Ardublockly.getLocalStr('code_copied'));
   });
   clipboard.on('error', function(e) {
-    console.log(e);
+    throw e;
   });
 
   </script>
@@ -352,6 +352,49 @@
       window.removeEventListener('load', load, false);
       Ardublockly.init();
       document.getElementById("button_copy_clipboard").setAttribute("data-tooltip", Ardublockly.getLocalStr('save_to_clipboard'));
+
+      var compile = document.getElementById('button_compile_sketch');
+      compile.addEventListener('click', function () {
+        var sketch = Ardublockly.generateArduino();
+        var data = {
+          "board": "sensebox",
+          "sketch": sketch
+        };
+
+        var request = ArdublocklyServer.createRequest();
+
+        // The data received is JSON, so it needs to be converted into the right
+        // format to be displayed in the page.
+        var onReady = function() {
+          if (request.readyState == 4) {
+            if (request.status == 200) {
+              var dataReceived = null;
+              try {
+                dataReceived = request.responseText;
+                var a = document.createElement('a');
+                var blob = new Blob([dataReceived]);
+                a.href = window.URL.createObjectURL(blob);
+                a.download = document.getElementById('sketch_name').value +'.hex';
+                a.click();
+              } catch(e) {
+                throw e;
+              }
+            } else {
+              return null;
+            }
+          }
+        };
+
+        try {
+          request.open('POST', 'https://compiler.sensebox.de/compile', true);
+          request.setRequestHeader('Content-Type', 'application/json');
+          request.onreadystatechange = onReady;
+          request.send(JSON.stringify(data));
+        } catch (e) {
+          console.log('Error: ', e);
+          throw e;
+        }
+      });
     });
   </script>
 </body>
