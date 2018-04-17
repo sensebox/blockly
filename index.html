@@ -133,7 +133,7 @@
 
           <a id="button_copy_clipboard" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_blue" data-clipboard-action="copy" data-clipboard-target="#content_arduino" data-position="left" data-delay="750" data-tooltip="In Zwischenablage kopieren"><i id="button_copy_clipboard_icon" class="mdi-action-assignment"></i></a>
           <a id="button_compile_sketch" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" data-position="left" data-delay="750" data-tooltip="Sketch kompilieren"><i id="button_compile_sketch_icon" class="mdi-action-assignment-turned-in"></i></a>
-          
+
           <!-- <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
             <div class="spinner-layer spinner-orange">
               <div class="circle-clipper left">
@@ -349,6 +349,13 @@
   </script>
   <script>
     window.addEventListener('load', function load(event) {
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('board')) {
+        window.BOARD = urlParams.get('board');
+      } else {
+        window.BOARD = 'sensebox';
+      }
+
       window.removeEventListener('load', load, false);
       Ardublockly.init();
       document.getElementById("button_copy_clipboard").setAttribute("data-tooltip", Ardublockly.getLocalStr('save_to_clipboard'));
@@ -357,7 +364,7 @@
       compile.addEventListener('click', function () {
         var sketch = Ardublockly.generateArduino();
         var data = {
-          "board": "sensebox",
+          "board": window.BOARD,
           "sketch": sketch
         };
 
