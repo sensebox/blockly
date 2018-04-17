@@ -356,6 +356,15 @@
         window.BOARD = 'sensebox';
       }
 
+      switch (window.BOARD) {
+        case 'sensebox':
+          window.EXTENSION = 'hex';
+          break;
+        case 'sensebox-mcu':
+          window.EXTENSION = 'bin';
+          break;
+      }
+
       window.removeEventListener('load', load, false);
       Ardublockly.init();
       document.getElementById("button_copy_clipboard").setAttribute("data-tooltip", Ardublockly.getLocalStr('save_to_clipboard'));
@@ -382,7 +391,7 @@
                 document.body.appendChild(a);
                 var blob = new Blob([dataReceived]);
                 a.href = window.URL.createObjectURL(blob);
-                a.download = document.getElementById('sketch_name').value +'.hex';
+                a.download = document.getElementById('sketch_name').value +'.'+window.EXTENSION;
                 a.click();
                 document.body.removeChild(a);
               } catch(e) {
