@@ -372,10 +372,12 @@
               try {
                 dataReceived = request.responseText;
                 var a = document.createElement('a');
+                document.body.appendChild(a);
                 var blob = new Blob([dataReceived]);
                 a.href = window.URL.createObjectURL(blob);
                 a.download = document.getElementById('sketch_name').value +'.hex';
                 a.click();
+                document.body.removeChild(a);
               } catch(e) {
                 throw e;
               }
